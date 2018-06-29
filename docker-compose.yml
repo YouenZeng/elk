@@ -2,7 +2,7 @@ version: "3.5"
 
 services:
   elasticsearch:
-    image: lenic/elasticsearch-oss:6.2.4
+    image: registry.cn-hangzhou.aliyuncs.com/docker_lab/elasticsearch:latest
     environment:
       - ELASTICSEARCH_USERNAME=admin
       - ELASTICSEARCH_PASSWORD=admin@123
@@ -17,7 +17,7 @@ services:
         mode: host
 
   kibana:
-    image: lenic/kibana-oss:6.2.4
+    image: registry.cn-hangzhou.aliyuncs.com/docker_lab/kibana
     ports:
       - target: 5601
         published: 5601
@@ -27,7 +27,7 @@ services:
       - elasticsearch
 
   logstash:
-    image: lenic/logstash-oss:6.2.4
+    image: registry.cn-hangzhou.aliyuncs.com/docker_lab/logstash
     # ports:
     #   - target: 5043
     #     published: 5043
@@ -43,7 +43,7 @@ services:
       - ./yaml/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
 
   filebeat:
-    image: lenic/filebeat:6.2.4
+    image: registry.cn-hangzhou.aliyuncs.com/docker_lab/filebeats
     depends_on:
       - logstash
     volumes:
